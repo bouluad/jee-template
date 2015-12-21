@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:security="http://www.springframework.org/security/tags">
+
+<h:head>
+	<title>E-BOOK</title>
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="/img/ban.jpg" />
+
+		</p:layoutUnit>
+
+
+
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Tarik BOUDAA, Ecole Nationale Des Sciences Appliquées Al-Hoceima - TP JEE, Intégration JSF, Spring et Hibernate" />
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="east" size="220" resizable="true"
+			collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="options du compte">
+						<p:menuitem value="Mon Compte" url="#" icon="ui-icon-disk" />
+
+						<p:menuitem value="Déconnexion"
+							url="#{request.contextPath}/j_spring_security_logout"
+							icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+
+
+			</h:form>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Catalogue">
+						<p:menuitem value="Tous" action="#" icon="ui-icon-disk" />
+						<p:menuitem value="Informatique" action="#" icon="ui-icon-disk" />
+						<p:menuitem value="Sciences" action="#" icon="ui-icon-disk" />
+
+					</p:submenu>
+
+
+					<p:submenu label="Panier">
+						<p:menuitem value="Mon Panier" action="#" icon="ui-icon-disk" />
+						<p:menuitem value="Acheter" action="#" icon="ui-icon-disk" />
+
+					</p:submenu>
+
+				</p:menu>
+
+
+			</h:form>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="center">
+			<h2>Catalogue</h2>
+
+			<h:form>
+
+				<p:dataTable id="dataTable" var="it"
+					value="#{bookController.bookList}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks}  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+
+					<f:facet name="header">  
+            Liste des livres 
+        </f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ISBN" />
+						</f:facet>
+						<h:outputText value="#{it.isbn}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Titre" />
+						</f:facet>
+						<h:outputText value="#{it.title}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Prix" />
+						</f:facet>
+						<h:outputText value="#{it.price}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Description" />
+						</f:facet>
+						<h:outputText value="#{it.description}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Nbr pages" />
+						</f:facet>
+						<h:outputText value="#{it.nbOfPage}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Illustrations" />
+						</f:facet>
+						<h:outputText value="#{it.illustrations}" />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+</h:body>
+</html>
+
+

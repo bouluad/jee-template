@@ -1,0 +1,73 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	contentType="text/html" renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="Contacts">
+
+		<!-- Main View -->
+		<pm:view id="main" swatch="d">
+
+			<h:form id="newBookForm">
+
+
+
+
+				<pm:content>
+
+
+					<p:outputPanel id="content">
+
+
+
+
+						<p:inputText id="titre" value="#{bookController.book.title}"
+							label="Titre" />
+
+						<p:inputText id="prix" value="#{bookController.book.price}"
+							label="Prix:" />
+
+						<p:inputText id="isn" value="#{bookController.book.isbn}"
+							label="ISBN:" />
+
+						<p:inputTextarea rows="5" cols="20" counter="counter"
+							label="description" maxlength="50"
+							counterTemplate="{0} caractères restants" autoResize="false"
+							value="#{bookController.book.description}" />
+
+						<p:inputText id="nbrpages" label="nbr"
+							value="#{bookController.book.nbOfPage}" />
+
+
+						<p:selectBooleanCheckbox label="illustrations:"
+							value="#{bookController.book.illustrations}" itemLabel="Oui" />
+
+
+
+						<p:selectOneMenu value="#{bookController.book.type}"
+							label="Domaine">
+							<f:selectItem itemLabel="Informatique" itemValue="Informatique" />
+							<f:selectItem itemLabel="Sciences" itemValue="Sciences" />
+							<f:selectItem itemLabel="Mathématiques" itemValue="Mathématiques" />
+							<f:selectItem itemLabel="Technologies" itemValue="Technologies" />
+
+						</p:selectOneMenu>
+
+
+
+						<p:commandButton value="Ajouter Livre"
+							actionListener="#{bookController.doCreateBook}"
+							action="pm:content" />
+
+					</p:outputPanel>
+				</pm:content>
+			</h:form>
+
+		</pm:view>
+	</pm:page>
+
+</f:view>

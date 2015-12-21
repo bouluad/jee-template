@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>E-BOOK</title>
+</h:head>
+<h:body>
+	<f:event listener="#{userManagerBean.initForm}" type="preRenderView" />
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="/img/ban.jpg" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Tarik BOUDAA, Ecole Nationale Des Sciences Appliquées Al-Hoceima - TP JEE, Intégration JSF, Spring et Hibernate" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Gs. Utilisateurs">
+						<p:menuitem value="Nouveau" action="#{userManagerBean.newUser}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Utilisateur" action="#" icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+				<p:menu>
+					<p:submenu label="Catalogue">
+						<p:menuitem value="gs catalogue" action="#{bookController.doNew}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Stat." url="/pages/admin/stat.xhtml"
+							icon="ui-icon-disk" />
+
+					</p:submenu>
+
+				</p:menu>
+
+			</h:form>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="east" size="220" resizable="true"
+			collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="options du compte">
+						<p:menuitem value="Mon Compte" url="#" icon="ui-icon-disk" />
+
+						<p:menuitem value="Déconnexion"
+							url="#{request.contextPath}/j_spring_security_logout"
+							icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+
+
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h:form id="idf">
+
+				<p:panel id="panel" header="Nouveau utilisateur"
+					style="margin-bottom:10px;">
+					<p:messages id="messages" showDetail="true" />
+
+					<h:panelGrid columns="2" cellpadding="4">
+
+						<h:outputLabel value="Nom" style="font-weight:bold" />
+						<p:inputText id="nom" value="#{userManagerBean.user.nom}" />
+
+						<h:outputLabel value="prénom" style="font-weight:bold" />
+						<p:inputText id="prenom" value="#{userManagerBean.user.prenom}" />
+
+
+
+						<h:outputLabel value="Nom d'utilisateur" style="font-weight:bold" />
+						<p:inputText value="#{userManagerBean.user.login}" />
+
+						<h:outputLabel value="Mot de passe" style="font-weight:bold" />
+						<p:password id="feedback" value="#{userManagerBean.user.password}"
+							feedback="true" />
+						<h:outputLabel value="activation" style="font-weight:bold" />
+						<p:selectBooleanCheckbox value="#{userManagerBean.user.enabled}" />
+						<p:selectOneMenu id="role"
+							value="#{userManagerBean.user.role.roleName}">
+							<f:selectItems value="#{userManagerBean.listRoles}" />
+
+						</p:selectOneMenu>
+
+						<f:facet name="footer">
+							<h:panelGroup style="display:block; text-align:center">
+								<p:commandButton value="Ajouter Utilisateur" update=":idf"
+									id="ajax" actionListener="#{userManagerBean.addUser}" />
+							</h:panelGroup>
+						</f:facet>
+					</h:panelGrid>
+				</p:panel>
+
+
+				<p:panel id="listUsersPanel" header="Liste des utilisateurs"
+					style="margin-top:10px;">
+					<h:form id="form">
+
+						<p:dataTable id="dataTable" var="it"
+							value="#{userManagerBean.listeUsers}" paginator="true" rows="10"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks}  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15">
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="nom" />
+								</f:facet>
+								<h:outputText value="#{it.nom}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="prénom" />
+								</f:facet>
+								<h:outputText value="#{it.prenom}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="login" />
+								</f:facet>
+								<h:outputText value="#{it.login}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Date dérnier Accès" />
+								</f:facet>
+								<h:outputText value="#{it.lastAccessDate}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Activation" />
+								</f:facet>
+								<h:outputText value="#{it.enabled}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Role" />
+								</f:facet>
+								<h:outputText value="#{it.role.roleName}" />
+							</p:column>
+
+							<p:column headerText="Options">
+								<p:commandLink value="delete" ajax="true" update=":idf"
+									actionListener="#{userManagerBean.deleteUser(it)}"
+									onclick="confirm('Voulez vous vraiment supprimer cet utilisateur?')" />
+
+
+							</p:column>
+
+						</p:dataTable>
+
+
+					</h:form>
+
+				</p:panel>
+
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+</h:body>
+</html>
+
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>E-BOOK</title>
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="/img/ban.jpg" />
+			<a href="#{request.contextPath}/j_spring_security_logout">Déconnexion</a>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Tarik BOUDAA, Ecole Nationale Des Sciences Appliquées Al-Hoceima - TP JEE, Intégration JSF, Spring et Hibernate" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Gs. Utilisateurs">
+						<p:menuitem value="Nouveau" action="#{userManagerBean.newUser}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Utilisateurs" action="#" icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+				<p:menu>
+					<p:submenu label="Catalogue">
+						<p:menuitem value="gs catalogue" action="#{bookController.doNew}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Stat." url="/pages/admin/stat.xhtml"
+							icon="ui-icon-disk" />
+
+					</p:submenu>
+
+				</p:menu>
+
+			</h:form>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="center">
+
+
+			<h:form>
+				<p:panel id="panel" header="Nouveau livre"
+					style="margin-bottom:10px;">
+
+					<h:panelGrid columns="2" cellpadding="4">
+
+						<h:outputLabel value="Titre" style="font-weight:bold" />
+						<p:inputText id="titre" value="#{bookController.book.title}" />
+
+						<h:outputLabel value="prix" style="font-weight:bold" />
+						<p:inputText id="prix" value="#{bookController.book.price}" />
+
+
+
+						<h:outputLabel value="isbn" style="font-weight:bold" />
+						<p:inputText id="isbn" value="#{bookController.book.isbn}" />
+
+						<h:outputLabel value="description" style="font-weight:bold" />
+
+						<p:inputTextarea rows="5" cols="30" counter="counter"
+							maxlength="50" counterTemplate="{0} caractères restants"
+							autoResize="false" value="#{bookController.book.description}" />
+						<h:outputText id="counter" />
+
+						<h:outputText />
+
+
+
+						<h:outputLabel value="Nombre de pages" style="font-weight:bold" />
+						<p:inputText id="nbrpages" value="#{bookController.book.nbOfPage}" />
+
+
+						<h:outputLabel value="Illustrations" style="font-weight:bold" />
+						<p:selectBooleanCheckbox
+							value="#{bookController.book.illustrations}" />
+
+
+						<h:outputLabel value="Rayon" style="font-weight:bold" />
+						<p:selectOneMenu id="Rayon" value="#{bookController.rayon}">
+							<f:selectItem itemLabel="Selectionner un rayon" itemValue="" />
+							<f:selectItems value="#{bookController.rayons}" />
+							<p:ajax update="themes"
+								listener="#{bookController.handleRayonChange}" />
+						</p:selectOneMenu>
+
+						<h:outputLabel value="Thème" style="font-weight:bold" />
+						<p:selectOneMenu id="themes" value="#{bookController.theme}">
+							<f:selectItem itemLabel="Selectionner un thème" itemValue="" />
+							<f:selectItems value="#{bookController.themes}" />
+						</p:selectOneMenu>
+
+
+
+
+						<f:facet name="footer">
+							<h:panelGroup style="display:block; text-align:center">
+								<p:commandButton value="Envoyer"
+									action="#{bookController.doCreateBook}" ajax="false" />
+							</h:panelGroup>
+						</f:facet>
+					</h:panelGrid>
+				</p:panel>
+
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+</h:body>
+</html>
+
+

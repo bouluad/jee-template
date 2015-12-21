@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>List of the books</title>
+</h:head>
+<h:body>
+
+	<a href="#{request.contextPath}/j_spring_security_logout">Déconnexion</a>
+	<h1>Gestion des livres</h1>
+	<hr />
+
+	<h:form>
+
+		<p:dataTable id="dataTable" var="it"
+			value="#{userManagerBean.listeUsers}" paginator="true" rows="10"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks}  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+
+
+
+
+
+			<f:facet name="header">  
+            Liste des utilisateurs 
+        </f:facet>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="nom" />
+				</f:facet>
+				<h:outputText value="#{it.nom}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="prénom" />
+				</f:facet>
+				<h:outputText value="#{it.prenom}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="login" />
+				</f:facet>
+				<h:outputText value="#{it.login}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Password" />
+				</f:facet>
+				<h:outputText value="#{it.password}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date dérnier Accès" />
+				</f:facet>
+				<h:outputText value="#{it.lastAccessDate}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Activation" />
+				</f:facet>
+				<h:outputText value="#{it.enabled}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Role" />
+				</f:facet>
+				<h:outputText value="#{it.role.roleName}" />
+			</p:column>
+
+			<p:column headerText="Options">
+				<p:commandLink value="delete" ajax="false"
+					action="#{userManagerBean.deleteUser(it)}"
+					onclick="alert('Voulez vous vraiment supprimer cet utilisateur?')" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+
+
+	<h:form>
+		<h:commandLink action="#{bookController.doNew}">
+		</h:commandLink>
+	</h:form>
+	<hr />
+	<i>Tarik BOUDAA - (Ecole Nationales Des Sciences Appliquées))</i>
+</h:body>
+</html>

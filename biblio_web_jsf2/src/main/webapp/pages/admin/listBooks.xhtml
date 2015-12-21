@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>E-BOOK</title>
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="/img/ban.jpg" />
+			<a href="#{request.contextPath}/j_spring_security_logout">Déconnexion</a>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Tarik BOUDAA, Ecole Nationale Des Sciences Appliquées Al-Hoceima - TP JEE, Intégration JSF, Spring et Hibernate" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Gs. Utilisateurs">
+						<p:menuitem value="Nouveau" action="#{userManagerBean.newUser}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Menuxxxx" action="#" icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+				<p:menu>
+					<p:submenu label="Catalogue">
+						<p:menuitem value="gs catalogue" action="#{bookController.doNew}"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Stat." url="/pages/admin/stat.xhtml"
+							icon="ui-icon-disk" />
+
+					</p:submenu>
+
+				</p:menu>
+
+			</h:form>
+		</p:layoutUnit>
+
+
+
+		<p:layoutUnit position="center">
+			<h:form>
+
+				<p:dataTable id="dataTable" var="it"
+					value="#{bookController.bookList}" paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks}  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+
+					<f:facet name="header">  
+            Liste des livres 
+        </f:facet>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="ISBN" />
+						</f:facet>
+						<h:outputText value="#{it.isbn}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Title" />
+						</f:facet>
+						<h:outputText value="#{it.title}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Price" />
+						</f:facet>
+						<h:outputText value="#{it.price}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Description" />
+						</f:facet>
+						<h:outputText value="#{it.description}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Number Of Pages" />
+						</f:facet>
+						<h:outputText value="#{it.nbOfPage}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Illustrations" />
+						</f:facet>
+						<h:outputText value="#{it.illustrations}" />
+					</p:column>
+				</p:dataTable>
+
+
+			</h:form>
+
+
+
+			<h:form>
+				<h:commandLink action="#{bookController.doNew}">
+				</h:commandLink>
+			</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+</h:body>
+</html>
+
+

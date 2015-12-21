@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>E-BOOK</title>
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="/img/ban.jpg" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Tarik BOUDAA, Ecole Nationale Des Sciences Appliquées Al-Hoceima - TP JEE, Intégration JSF, Spring et Hibernate" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Accueil">
+						<p:menuitem value="Nouveautés" actionListener="#"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Meilleures ventes" actionListener="#"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Agenda" actionListener="#" icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+
+				<p:menu>
+					<p:submenu label="catalogue">
+						<p:menuitem value="Informatique" actionListener="#"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Sciences" actionListener="#"
+							icon="ui-icon-disk" />
+						<p:menuitem value="Droit" actionListener="#" icon="ui-icon-disk" />
+					</p:submenu>
+
+				</p:menu>
+
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="east" size="200" resizable="false"
+			collapsible="false" effect="drop">
+			<h:form>
+
+				<p:menu>
+					<p:submenu label="Espace client">
+						<p:menuitem value="Connexion" icon="ui-icon-disk"
+							url="/pages/login.jsf" />
+						<p:menuitem value="Mon Panier" actionListener="#"
+							icon="ui-icon-disk" />
+
+						<p:menuitem value="S'inscrire" url="/pages/inscription.xhtml"
+							icon="ui-icon-disk" />
+					</p:submenu>
+
+
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<h:form id="idf">
+
+		<p:panel id="panel" header="Nouveau utilisateur"
+			style="margin-bottom:10px;">
+			<p:messages id="messages" showDetail="true" />
+
+			<h:panelGrid columns="2" cellpadding="4">
+
+				<h:outputLabel value="Nom" style="font-weight:bold" />
+				<p:inputText id="nom" value="#{userManagerBean.user.nom}" />
+
+				<h:outputLabel value="prénom" style="font-weight:bold" />
+				<p:inputText id="prenom" value="#{userManagerBean.user.prenom}" />
+
+
+
+				<h:outputLabel value="Nom d'utilisateur" style="font-weight:bold" />
+				<p:inputText value="#{userManagerBean.user.login}" />
+
+				<h:outputLabel value="Mot de passe" style="font-weight:bold" />
+				<p:password id="feedback" value="#{userManagerBean.user.password}"
+					feedback="true" />
+
+
+				<f:facet name="footer">
+					<h:panelGroup style="display:block; text-align:center">
+						<p:commandButton value="Ajouter Utilisateur" update="messages"
+							ajax="false" id="ajax" action="#{userManagerBean.insription}" />
+					</h:panelGroup>
+				</f:facet>
+			</h:panelGrid>
+		</p:panel>
+
+
+
+
+	</h:form>
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+</h:body>
+</html>
+
+
