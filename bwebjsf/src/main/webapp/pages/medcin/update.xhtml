@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <h:title></h:title>
+   </h:head>
+   <h:body>
+   
+   
+   <h:form>
+	
+		<p:panel id="panel" header="Chercher un patient" style="margin-bottom:10px;">
+			<h:panelGrid columns="3" cellpadding="4">
+			
+			
+					
+							<h:outputLabel value="NOM :" />
+							<p:inputText id="nom" value="#{patientController.search}" />
+					
+					
+					<h:panelGroup style="display:block;text-align:center">
+						<p:commandButton value="Chercher" action="#{patientController.searchByNom}" ajax="false"/>
+						</h:panelGroup>
+				
+		
+	</h:panelGrid>
+	</p:panel>
+
+</h:form>
+
+<h:form>
+          
+          
+           
+           	<p:panel id="panel" header="Modifier patient" style="margin-bottom:10px;">
+			<h:panelGrid columns="2" cellpadding="4">
+			
+							<h:outputLabel value="          " />
+							<h:inputHidden id="id" value="#{patientController.patient.id}" />
+						
+					
+							<h:outputLabel value="CIN :" />
+							<p:inputText id="cin" value="#{patientController.patient.CIN}" />
+					
+					
+							
+							<h:outputLabel value="Nom :" />
+							<p:inputText id="nom" value="#{patientController.patient.nom}" />
+					
+						
+							<h:outputLabel value="Prenom :" />
+							<p:inputText id="prenom" value="#{patientController.patient.prenom}" />
+					
+							
+							<h:outputLabel value="Date de naissance :" />
+							<p:inputText id="date_naissance" value="#{patientController.patient.date_naissance}" />
+					
+						
+							<h:outputLabel value="Tel prive :" />
+							<p:inputText id="tel_prive" value="#{patientController.patient.tel_prive}" />
+					
+							
+							<h:outputLabel value="Email:" />
+							<p:inputText id="email" value="#{patientController.patient.email}" />
+					
+					
+					<f:facet name="footer">
+						<h:panelGroup style="display:block;text-align:center">
+						<p:commandButton value="Modifier " action="#{patientController.doUpdatePatient}" ajax="false"/>
+						</h:panelGroup>
+					</f:facet>
+				
+		
+	</h:panelGrid>
+	</p:panel>
+         
+     </h:form>   
+        
+   </h:body>
+</html>
