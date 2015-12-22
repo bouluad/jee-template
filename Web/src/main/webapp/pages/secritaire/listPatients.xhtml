@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <h:title></h:title>
+   </h:head>
+   <h:body>
+			
+					<h:form>
+						<h:panelGroup style="display:block;text-align:center">
+						<p:commandButton value="Ajouter Patient" action="#{patientController.doNew}" ajax="false"/>
+						<p:commandButton value="Modifier" action="#{patientController.doUpdate}" ajax="false"/>
+						<p:commandButton value="Supprimer Patient" action="#{patientController.doDelet}" ajax="false"/>
+						
+						</h:panelGroup>
+			</h:form>
+			
+			
+			<center><h1> Patients </h1></center>
+			
+			<h:form>
+				<p:dataTable id="dataTable" var="it"
+				
+				value="#{patientController.patientList}" paginator="true" rows="2"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+				
+				{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15"
+				>
+				
+				<p:column>
+					<f:facet name="header">
+					<h:outputText value="CIN"/>
+					</f:facet>
+					<h:outputText value="#{it.CIN}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Nom"/>
+					</f:facet>
+					<h:outputText value="#{it.nom}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Prenom"/>
+					</f:facet>
+					<h:outputText value="#{it.prenom}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Date de Naissance"/>
+					</f:facet>
+					<h:outputText value="#{it.date_naissance}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Tel Prive "/>
+					</f:facet>
+					<h:outputText value="#{it.tel_prive}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Email"/>
+					</f:facet>
+					<h:outputText value="#{it.email}"/>
+				
+				</p:column>
+				
+										<p:column>
+				
+				<f:facet name="header">
+					<h:outputText value="Supprimer"/>
+					</f:facet>
+				<p:commandLink value="Supprimer" action="#{patientController.doDeletPatient(it)}" ajax="false"/>
+				
+				</p:column>
+
+				</p:dataTable>
+			
+			</h:form>
+			
+
+			
+   </h:body>
+</html>

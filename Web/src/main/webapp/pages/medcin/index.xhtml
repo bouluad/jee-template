@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="190" resizable="false"
+			collapsible="false">
+			<p:graphicImage value="" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="50" resizable="false"
+			collapsible="false">
+			<h:outputText
+				value="Mohammed BOULUAD,Gestion  des patients d’un système de gestion d’un cabinet médical V 0.1" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Menu"
+			resizable="true" collapsible="true">
+
+			<h:form>
+
+
+				<p:menu>
+					<p:submenu label="Accueil">
+						
+						<p:menuitem value="Chercher un patient" actionListener="#"
+							 />
+						<p:menuitem value="Creation d'un compte" actionListener="#"  />
+						<p:menuitem value="Suppresion d'un compte" actionListener="#"  />
+						<p:menuitem value="Activation d'un compte" actionListener="#"  /> 
+						<p:menuitem value="Desactivation d'un compte" actionListener="#"  />
+					</p:submenu>
+
+				</p:menu>
+
+
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="east" size="200" resizable="false"
+			collapsible="false" effect="drop">
+			<h:form>
+
+				<p:menu>
+					<p:submenu label="Déconnexion">
+						<p:menuitem value="Déconnexion" 
+							url="#" />
+						<p:menuitem value="Mon Profil" actionListener="#"
+							 />
+
+					</p:submenu>
+
+
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<h:form>
+				<p:dataTable id="dataTable" var="it"
+				
+				value="#{patientController.patientList}" paginator="true" rows="2"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+				
+				{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15"
+				>
+				
+				<p:column>
+					<f:facet name="header">
+					<h:outputText value="CIN"/>
+					</f:facet>
+					<h:outputText value="#{it.CIN}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Nom"/>
+					</f:facet>
+					<h:outputText value="#{it.nom}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Prenom"/>
+					</f:facet>
+					<h:outputText value="#{it.prenom}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Date de Naissance"/>
+					</f:facet>
+					<h:outputText value="#{it.date_naissance}"/>
+				
+				</p:column>
+				
+								<p:column>
+					<f:facet name="header">
+					<h:outputText value="Tel Prive "/>
+					</f:facet>
+					<h:outputText value="#{it.tel_prive}"/>
+				
+				</p:column>
+				
+					
+
+				</p:dataTable>
+			
+			</h:form>
+			
+
+		</p:layoutUnit>
+
+	</p:layout>
+
+
+
+
+</h:body>
+</html>
+
+
